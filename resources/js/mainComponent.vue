@@ -1,13 +1,15 @@
 <template>
-<ExampleComponent/>
+<div>
+<HomeComponent/>
+</div>
 </template>
 
 <script>
-import ExampleComponent from './components/ExampleComponent.vue'
+import HomeComponent from './views/HomeComponent'
 export default {
   name : 'mainComponent',
   components : {
-ExampleComponent
+HomeComponent
   }
 }
 </script>

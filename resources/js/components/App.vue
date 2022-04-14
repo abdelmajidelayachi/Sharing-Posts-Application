@@ -1,7 +1,17 @@
 <template>
-  <div id="nav">
-      <router-link class="text-yellow-700" to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-  </div>
- 
+    <div>
+        <h1>Vue Router Demo App</h1>
+        <p>
+            <router-link :to="{ name: 'home' }">Home</router-link> |
+            <router-link :to="{ name: 'about' }">About</router-link>
+        </p>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
+<script>
+    export default {
+      
+    }
+</script>
