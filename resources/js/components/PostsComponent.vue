@@ -1,10 +1,11 @@
 <template lang="">
   <div>
     <Post/>
+    
   </div>
 </template>
 <script>
-import Post from './components/PostComponent'
+import Post from './PostComponent'
 export default {
   data() {
     return {
