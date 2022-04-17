@@ -1,5 +1,5 @@
 <template lang="en">
-  <section class="text-gray-600 body-font bg-white rounded">
+  <section class="text-gray-600 body-font bg-white rounded mb-3">
     <div class = "bg-white"
     <form class="flex items-center space-x-6 pl-6 py-2 rounded-lg bg-white ">
         <div class="shrink-0">
@@ -20,34 +20,38 @@
     <div class="w-full flex  my-3  items-center justify-evenly py-1 border ">
        <div class="w-1/2 flex justify-around" >
         <div class="flex items-center">
-          <div class='text-gray-500 mt-1'>
-            <i class="fa-regular fa-up"></i>
+          <div  @click="upVoteHandler" class='text-gray-500' >
+            <!-- <i class="fas fa-up"></i><i class="fa-light fa-thumbs-up"></i>
+            <i class="fa-solid fa-up"></i> -->
+            <i class="fa-thumbs-up fa-2x" v-bind:class="[upVote  ?' fas text-red-500': ' fa-regular ' ]"
+                       ></i>
+            
             <!-- <i v-if='upVote' class="fa-light fa-up"></i> -->
-            <ion-icon v-if='upVote' class='text-red-500' name="arrow-up-circle"></ion-icon>
-            <ion-icon v-else name="arrow-up-circle-outline"></ion-icon>
+            <!-- <ion-icon @click="upVoteHandler" v-if='upVote' class='text-red-500' name="arrow-up-circle"></ion-icon>
+            <ion-icon @click="upVoteHandler" v-else name="arrow-up-circle-outline"></ion-icon> -->
             </div>
-            <div class='text-gray-500'>
-            <span class=''>upVote</span>
+            <div class='text-gray-500 ml-2'>
+            <!-- <span class='cursor-pointer'>upVote</span> -->
             </div>
         </div>
-        <div class="flex items-center">
-          <div class='text-gray-500 mt-1'>
-             <ion-icon v-if='downVote' class='text-red-500' name="arrow-down-circle"></ion-icon>
-            <ion-icon v-else name="arrow-down-circle-outline"></ion-icon>
+        <div  class="flex items-center">
+          <div @click="downVoteHandler" class='text-gray-500 mt-1'>
+            <i class="fa-thumbs-down fa-2x" v-bind:class="[downVote  ?' fas text-red-500': ' fa-regular ' ]"
+                       ></i>
             </div>
             <div class='text-gray-500'>
-            <span class=''>downVote</span>
+            <!-- <span class=''>downVote</span> -->
             </div>
         </div>
         </div>
          <div class="w-1/2 flex justify-center" >
         <div class="flex items-center">
           <div  @click="showCommentHandler" class='text-gray-500 mt-1'>
-            <ion-icon v-if='commentTap' name="chatbox"></ion-icon>
-            <ion-icon v-else name="chatbox-outline"></ion-icon>
+             <i class="fa-message fa-2x" v-bind:class="[commentTap  ?' fas': ' fa-regular ' ]"
+                       ></i>
             </div>
             <div class='text-gray-500'>
-            <span class='mb-1'>comment</span>
+            <!-- <span class='mb-1'>comment</span> -->
             </div>
         </div>
         </div>
@@ -64,15 +68,23 @@ import Comments from './CommentsComponent.vue'
 export default {
   data() {
     return {
-      upVote : true,
+      upVote : false,
       downVote : false,
-      commentTap : true,
+      commentTap : false,
     }
   },
   methods: {
     showCommentHandler(){
       this.commentTap = !this.commentTap
     },
+    upVoteHandler(){
+      this.upVote = !this.upVote
+      this.downVote = false
+    },
+    downVoteHandler(){
+      this.downVote = !this.downVote
+      this.upVote = false
+    }
   
     
   },

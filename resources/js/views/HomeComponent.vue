@@ -15,7 +15,7 @@ import AddPostComponent from "../components/AddPostComponent.vue";
 import NavComponent from "../components/NavComponent.vue";
 import Posts from "../components/PostsComponent.vue";
 export default {
-  components: { NavComponent, AddPostComponent, Posts },
+  components: { NavComponent, AddPostComponent, Posts},
   mounted() {
     console.log("Component mounted.");
   },

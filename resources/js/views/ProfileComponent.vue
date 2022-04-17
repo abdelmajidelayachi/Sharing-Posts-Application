@@ -1,30 +1,27 @@
-<template lang="">
+<template lang="en">
   <div>
-    <Post/>
-    
-    <Post/>
-    
-    <Post/>
+    <NavBar/>
     
   </div>
 </template>
 <script>
-import Post from './PostComponent'
+import NavBar from '../components/NavComponent.vue'
 export default {
   data() {
     return {
-     
+      
     }
   },
   methods: {
-   
+    
   },
   components: {
-    Post
+    NavBar
   }
+  
 
 }
 </script>
-<style lang="">
+<style lang="en">
   
 </style>

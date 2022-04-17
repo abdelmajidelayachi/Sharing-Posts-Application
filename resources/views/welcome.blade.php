@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- iconic icons -->
-    <!-- font icons -->
-    <script src="https://kit.fontawesome.com/7ab9e52e06.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- font icons -->
+    <!-- <script src="https://kit.fontawesome.com/7ab9e52e06.js" crossorigin="anonymous"></script> -->
     <!-- tailwindcss script -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -32,8 +32,9 @@
 
 <body class="antialiased">
     <div id="app">
-        
         <main-component></main-component>
+        <!-- <div class="absolute z-111"><i class="fas fa-person"></i>this</div>  -->
+        <!-- <i class="fas fa-user"></i> -->
         <!-- <hr>
            <router-link :to='/'>Home</router-link>
            <router-link :to='/about'>About</router-link>

@@ -10,12 +10,7 @@
     <Comment/>
     <Comment/>
     <Comment/>
-    <Comment/>
-    <Comment/>
-    <Comment/>
-    <Comment/>
-    <Comment/>
-    <Comment/>
+  
   </div>
 </template>
 <script>
