@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import HomeComponent from './views/ProfileComponent'
+import HomeComponent from './views/profileComponent'
 export default {
   name : 'mainComponent',
   components : {

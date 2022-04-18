@@ -1,5 +1,5 @@
 <template lang="">
-    <div>
+    <div class='h-20'>
         <div class="shadow-md md:shadow-gray-200 w-full fixed top-0 left-0">
             <div
                 class="md:flex items-center justify-between bg-white py-3 md:px-10 px-7"
@@ -83,13 +83,13 @@
                             class="text-gray-800 hover:text-gray-400"
                         >
                             <button
-                                class="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-4 hover:bg:indigo-400 duration-500"
+                                class="bg-indigo-600 text-white nowrap font-[Poppins] py-2 px-6 rounded md:ml-4 hover:bg:indigo-400 duration-500"
                             >
                                 Sign in
                             </button>
                         </a>
                     </li>
-                    <li key="sign-in" class="md:ml-8 text-xl md:my-0 my-7">
+                    <li key="account" class="md:ml-8 text-xl md:my-0 my-7">
                         <a
                             href="/profile"
                             class="text-gray-800 hover:text-gray-400"

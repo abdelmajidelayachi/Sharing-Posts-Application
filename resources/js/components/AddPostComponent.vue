@@ -1,6 +1,6 @@
 <template lang="en">
   <section class="text-gray-600 body-font">
-  <div class="container  pt-20 mx-auto ">
+  <div class="container  pt-3 mx-auto ">
     <div class="flex items-center lg:w-full mt-2  sm:w-full  mb-6 border-gray-200 ">
      <form class="flex items-center space-x-6 px-4 py-2 rounded-lg w-full bg-white ">
         <div class="shrink-0">
