@@ -24,7 +24,7 @@
        </div>
        </div>
        <div class='flex justify-center text-center flex-col bg-white'>
-           <h1 class='font-bold text-2xl mt-2'>Sarah smith</h1>
+           <h1 class='font-bold text-2xl mt-2'>sarah Smith</h1>
            <p class='text-gray-600 text-lm'>@sarahsmith</p>
         </div>
         <div class="text-center text-lg pb-5 rounded-b-lg bg-white">

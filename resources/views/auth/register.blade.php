@@ -1,4 +1,9 @@
 
+
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,31 +34,45 @@
                 <label for="" class="block mt-3 text-sm text-gray-700 text-center font-semibold">
                     Register
                 </label>
-                <form method="#" action="#" class="mt-10">
+
+                <form method="POST" action="{{ route('register') }}">
+                        @csrf
                                     
-                    <div>
-                        <input type="text" placeholder="First Name" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
-                    </div>
+                    <!-- <div>
+                        <input type="text" placeholder="First Name" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0" >
+                    </div> -->
                     <div  class="mt-7">
-                        <input type="text" placeholder="Last Name" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+                        <input id="name" type="text" placeholder="Last Name" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 @error('name') border-red-500 @enderror" name="name" >
+                        @error('name')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+
                     </div>
         
                     <div class="mt-7">                
-                        <input type="email" placeholder="example.email@gmail.com" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">                           
+                        <input id="email" type="email" placeholder="example.email@gmail.com" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 @error('email') border-red-500 @enderror" name="email">
+                        @error('email') 
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <div class="mt-7">                
-                        <input type="password" placeholder="Choose a password" class="mt-1 block pl-3 w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">                           
+                        <input id="password" type="password" placeholder="Choose a password" class="mt-1 block pl-3 w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0  @error('password') is-invalid @enderror" name="password"> 
+                        @error('password') 
+                            <span class="text-red-500 text-sm">{{ $message }}</span>    
+                        @enderror
+
                     </div>
 
                     <div class="mt-7">                
-                        <input type="password" placeholder="Confirm password" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">                           
+                        <input id="password-confirm" type="password" placeholder="Confirm password" class="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0" name="password_confirmation">                           
                     </div>
 
                     
         
                     <div class="mt-7">
-                        <button class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+                        <button type ="submit"class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                             Register
                         </button>
                     </div>
@@ -76,5 +95,4 @@
 </body>
 </html>
 
-
-
+@endsection

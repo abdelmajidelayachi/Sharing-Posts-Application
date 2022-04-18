@@ -4,7 +4,7 @@
             <div
                 class="md:flex items-center justify-between bg-white py-3 md:px-10 px-7"
             >
-                <a href="/">
+                  <router-link :to="{ name: 'Home' }">
                     <div
                         class="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800"
                     >
@@ -13,7 +13,7 @@
                         </span>
                         weShare
                     </div>
-                </a>
+                </router-link>
                 <!-- onClick={() => setOpen(!open)} -->
                 <div
                     @click="menuDropper"
@@ -90,10 +90,7 @@
                         </a>
                     </li>
                     <li key="account" class="md:ml-8 text-xl md:my-0 my-7">
-                        <a
-                            href="/profile"
-                            class="text-gray-800 hover:text-gray-400"
-                        >
+                       <router-link :to="{ name: 'Profile' }">
                             <div class="shrink-0">
                                 <img
                                     class="h-12 w-12 object-cover rounded-full"
@@ -101,7 +98,7 @@
                                     alt="Current profile photo"
                                 />
                             </div>
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </div>
