@@ -8935,6 +8935,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-0 {
   margin-bottom: 0px;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .box-content {
   box-sizing: content-box;
 }

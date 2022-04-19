@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->int('userId');
-            $table->int('categoryId');
+            $table->integer('userId');
+            $table->integer('categoryId');
             $table->string('description')->nullable();
-            $table->int('upVotes');
-            $table->int('downVotes');
+            $table->integer('upVotes');
+            $table->integer('downVotes');
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->timestamps();
