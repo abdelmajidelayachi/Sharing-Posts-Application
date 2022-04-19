@@ -6,20 +6,33 @@
     <button class="px-4 py-2 md:text-base text-sm rounded-lg my-3 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 active:text-gray-100 focus:outline-none focus:ring focus:ring-indigo-300 ...">Comment</button>
 
     </div>
-    <Comment/>
-    <Comment/>
-    <Comment/>
-    <Comment/>
-  
+    
+    <Comment />
+ 
+
+   
   </div>
 </template>
 <script>
 import Comment from "./CommentComponent";
+import axios from 'axios'
 export default {
   data() {
-    return {};
+    return {
+      comments:[],
+    };
   },
-  methods: {},
+  methods: {
+    mounted(){
+      axios.get('/api/Comments/'+ this.commentsRef).then(res=>{
+        console.log(res.data);
+        this.comments=res.data.data;
+      })
+    }
+
+  },
+  props: ['commentsRef'],
+  
   components: {
     Comment,
   },

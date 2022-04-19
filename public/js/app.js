@@ -2386,6 +2386,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _CommentComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentComponent */ "./resources/js/components/CommentComponent.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2402,11 +2404,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      comments: []
+    };
   },
-  methods: {},
+  methods: {
+    mounted: function mounted() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/Comments/' + this.commentsRef).then(function (res) {
+        console.log(res.data);
+        _this.comments = res.data.data;
+      });
+    }
+  },
+  props: ['commentsRef'],
   components: {
     Comment: _CommentComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2807,6 +2822,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2830,9 +2853,64 @@ __webpack_require__.r(__webpack_exports__);
     downVoteHandler: function downVoteHandler() {
       this.downVote = !this.downVote;
       this.upVote = false;
+    },
+    getTimeOfThePost: function getTimeOfThePost() {
+      var today = new Date();
+      var postDate = new Date(this.post.created_at);
+      var year = today.getFullYear() - postDate.getFullYear();
+      var month = today.getMonth() - postDate.getMonth();
+      var day = today.getDay() - postDate.getDay();
+      var hours = today.getHours() - postDate.getHours();
+      var minutes = today.getMinutes() - postDate.getMinutes();
+      var seconds = today.getSeconds() - postDate.getSeconds(); // console.log(this.post.created_at);
+      // console.log('year'+ year);
+      // console.log('month'+ month);
+      // console.log('day'+ day);
+      // console.log('hours'+ hours);
+      // console.log('minutes'+ minutes);
+      // console.log('seconds'+ seconds);
+
+      if (year > 0) {
+        return {
+          name: 'year ago',
+          value: year
+        };
+      } else if (month > 0) {
+        return {
+          name: 'month ago',
+          value: month
+        };
+      } else if (day > 0) {
+        return {
+          name: 'day ago',
+          value: day
+        };
+      } else if (hours > 0) {
+        return {
+          name: 'h ago',
+          value: hours
+        };
+      } else if (minutes > 0) {
+        return {
+          name: 'min ago',
+          value: minutes
+        };
+      } else {
+        return {
+          name: 'sec ago',
+          value: seconds
+        };
+      } // console.log(year); 
+      // return this.post.created_at
+
     }
   },
   props: ['post'],
+  // data : function(){
+  //   return {
+  //     posts:this.post
+  //   }
+  // }
   components: {
     Comments: _CommentsComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -4600,21 +4678,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("Comment"),
-      _vm._v(" "),
-      _c("Comment"),
-      _vm._v(" "),
-      _c("Comment"),
-      _vm._v(" "),
-      _c("Comment"),
-    ],
-    1
-  )
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("Comment")], 1)
 }
 var staticRenderFns = [
   function () {
@@ -5131,7 +5195,37 @@ var render = function () {
     { staticClass: "text-gray-600 body-font bg-white rounded mb-3" },
     [
       _c("div", { staticClass: "bg-white" }, [
-        _vm._m(0),
+        _c(
+          "form",
+          {
+            staticClass:
+              "flex items-center space-x-6 pl-6 py-1 rounded-lg bg-white ",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col" }, [
+              _c(
+                "h1",
+                {
+                  staticClass:
+                    "title-font sm:text-base md:text-xl  lg:text-3xl mb-1 font-bold pt-3 text-gray-900",
+                },
+                [_vm._v("Sarah Smith ")]
+              ),
+              _vm._v(" "),
+              _c("p", {}, [
+                _vm._v(
+                  _vm._s(
+                    _vm.getTimeOfThePost().value +
+                      " " +
+                      _vm.getTimeOfThePost().name
+                  )
+                ),
+              ]),
+            ]),
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "px-7 mt-3" }, [
           _c(
@@ -5156,6 +5250,25 @@ var render = function () {
                   staticClass: "w-full object-cover object-center rounded",
                   attrs: { alt: "hero", src: "" + _vm.post.image },
                 })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.post.video != null
+              ? _c(
+                  "video",
+                  { staticClass: " rounded-lg ", attrs: { controls: "" } },
+                  [
+                    _c("source", {
+                      attrs: { src: "" + _vm.post.video, type: "video/mp4" },
+                    }),
+                    _vm._v(" "),
+                    _c("source", {
+                      attrs: { src: "movie.ogg", type: "video/ogg" },
+                    }),
+                    _vm._v(
+                      "\r\n        Your browser does not support the video tag.\r\n      "
+                    ),
+                  ]
+                )
               : _vm._e(),
           ]
         ),
@@ -5185,6 +5298,10 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
+                _c("span", { staticClass: "ml-3 text-lg text-gray-900" }, [
+                  _vm._v(_vm._s(_vm.post.upVotes)),
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "text-gray-500 ml-2" }),
               ]),
               _vm._v(" "),
@@ -5204,6 +5321,10 @@ var render = function () {
                     }),
                   ]
                 ),
+                _vm._v(" "),
+                _c("span", { staticClass: "ml-3 text-lg text-gray-900" }, [
+                  _vm._v(_vm._s(_vm.post.downVotes)),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-gray-500" }),
               ]),
@@ -5225,6 +5346,10 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
+                _c("span", { staticClass: "ml-3 text-lg text-gray-900" }, [
+                  _vm._v(_vm._s(_vm.post.downVotes)),
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "text-gray-500" }),
               ]),
             ]),
@@ -5232,7 +5357,13 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _vm.commentTap ? _c("div", [_c("Comments")], 1) : _vm._e(),
+      _vm.commentTap
+        ? _c(
+            "div",
+            [_c("Comments", { attrs: { commentsRef: _vm.post.id } })],
+            1
+          )
+        : _vm._e(),
     ]
   )
 }
@@ -5241,33 +5372,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      {
-        staticClass:
-          "flex items-center space-x-6 pl-6 py-2 rounded-lg bg-white ",
-      },
-      [
-        _c("div", { staticClass: "shrink-0" }, [
-          _c("img", {
-            staticClass: "h-16 w-16 object-cover rounded-full",
-            attrs: {
-              src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-              alt: "Current profile photo",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c(
-          "h1",
-          {
-            staticClass:
-              "title-font sm:text-base md:text-xl  lg:text-3xl mb-4 font-bold pt-3 text-gray-900",
-          },
-          [_vm._v("Sarah Smith ")]
-        ),
-      ]
-    )
+    return _c("div", { staticClass: "shrink-0" }, [
+      _c("img", {
+        staticClass: "h-16 w-16 object-cover rounded-full",
+        attrs: {
+          src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
+          alt: "Current profile photo",
+        },
+      }),
+    ])
   },
 ]
 render._withStripped = true
