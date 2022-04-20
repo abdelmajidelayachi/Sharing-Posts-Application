@@ -8974,18 +8974,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-11 {
   height: 2.75rem;
 }
-.h-60 {
-  height: 15rem;
-}
-.h-1 {
-  height: 0.25rem;
-}
-.h-8 {
-  height: 2rem;
-}
-.h-80 {
-  height: 20rem;
-}
 .min-h-screen {
   min-height: 100vh;
 }

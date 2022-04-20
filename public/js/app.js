@@ -2370,7 +2370,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['comments']
+});
 
 /***/ }),
 
@@ -2411,17 +2417,8 @@ __webpack_require__.r(__webpack_exports__);
       comments: []
     };
   },
-  methods: {
-    mounted: function mounted() {
-      var _this = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/Comments/' + this.commentsRef).then(function (res) {
-        console.log(res.data);
-        _this.comments = res.data.data;
-      });
-    }
-  },
-  props: ['commentsRef'],
+  methods: {},
+  props: ['comments'],
   components: {
     Comment: _CommentComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2839,7 +2836,8 @@ __webpack_require__.r(__webpack_exports__);
       upVote: false,
       downVote: false,
       commentTap: false,
-      posts: []
+      posts: [],
+      numberComments: 0
     };
   },
   methods: {
@@ -2853,6 +2851,9 @@ __webpack_require__.r(__webpack_exports__);
     downVoteHandler: function downVoteHandler() {
       this.downVote = !this.downVote;
       this.upVote = false;
+    },
+    countComment: function countComment() {
+      this.numberComments = this.posts.comments.length; // console.log(this.numberComments)
     },
     getTimeOfThePost: function getTimeOfThePost() {
       var today = new Date();
@@ -2941,7 +2942,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2955,7 +2955,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts').then(function (res) {
       console.log(res.data);
-      _this.posts = res.data.data;
+      _this.posts = res.data;
     });
   },
   methods: {},
@@ -4602,57 +4602,61 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    _vm._l(_vm.comments, function (comment, index) {
+      return _c("div", { key: index }, [
+        _c(
+          "form",
+          {
+            staticClass:
+              "flex items-start space-x-6 pl-6 py-2 rounded-lg bg-white ",
+          },
+          [
+            _vm._m(0, true),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col bg-gray-100 w-9/12 rounded-lg px-3 pb-3 ",
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "title-font text-sm md:text-base  lg:text-1xl font-bold pt-3 text-gray-900",
+                  },
+                  [_vm._v("Knausgaard typewriter ")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "md:text-sm text-xs  " }, [
+                  _vm._v(_vm._s(comment.message)),
+                ]),
+              ]
+            ),
+          ]
+        ),
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "form",
-        {
-          staticClass:
-            "flex items-start space-x-6 pl-6 py-2 rounded-lg bg-white ",
+    return _c("div", { staticClass: "shrink-0" }, [
+      _c("img", {
+        staticClass:
+          "md:h-12 md:w-12 lg:h-12 lg:w-12 h-10 w-10 object-cover rounded-full",
+        attrs: {
+          src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
+          alt: "Current profile photo",
         },
-        [
-          _c("div", { staticClass: "shrink-0" }, [
-            _c("img", {
-              staticClass:
-                "md:h-12 md:w-12 lg:h-12 lg:w-12 h-10 w-10 object-cover rounded-full",
-              attrs: {
-                src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-                alt: "Current profile photo",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex flex-col bg-gray-100 w-9/12 rounded-lg px-3 pb-3 ",
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "title-font text-sm md:text-base  lg:text-1xl font-bold pt-3 text-gray-900",
-                },
-                [_vm._v("Knausgaard typewriter ")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "md:text-sm text-xs  " }, [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper, nisi in vehicula tempus, nulla lacus vulputate sem, nec vehicula sem arcu sed sapien. Nulla interdum dictum quam, et semper odio ultricies sed. Morbi sollicitudin dui ac euismod vestibulum. Nam tellus erat, fringilla ac ornare imperdiet, fringilla id sem"
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
+      }),
     ])
   },
 ]
@@ -4678,7 +4682,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("Comment")], 1)
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("Comment", { attrs: { comments: _vm.comments } }),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {
@@ -5202,7 +5214,15 @@ var render = function () {
               "flex items-center space-x-6 pl-6 py-1 rounded-lg bg-white ",
           },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "shrink-0" }, [
+              _c("img", {
+                staticClass: "h-16 w-16 object-cover rounded-full",
+                attrs: {
+                  src: "" + _vm.post.user.profile_image,
+                  alt: "Current profile photo",
+                },
+              }),
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-col" }, [
               _c(
@@ -5211,7 +5231,7 @@ var render = function () {
                   staticClass:
                     "title-font sm:text-base md:text-xl  lg:text-3xl mb-1 font-bold pt-3 text-gray-900",
                 },
-                [_vm._v("Sarah Smith ")]
+                [_vm._v(_vm._s(_vm.post.user.name) + " ")]
               ),
               _vm._v(" "),
               _c("p", {}, [
@@ -5347,7 +5367,7 @@ var render = function () {
                 ),
                 _vm._v(" "),
                 _c("span", { staticClass: "ml-3 text-lg text-gray-900" }, [
-                  _vm._v(_vm._s(_vm.post.downVotes)),
+                  _vm._v(_vm._s(_vm.post.comments.length)),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-gray-500" }),
@@ -5360,29 +5380,14 @@ var render = function () {
       _vm.commentTap
         ? _c(
             "div",
-            [_c("Comments", { attrs: { commentsRef: _vm.post.id } })],
+            [_c("Comments", { attrs: { comments: _vm.post.comments } })],
             1
           )
         : _vm._e(),
     ]
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "shrink-0" }, [
-      _c("img", {
-        staticClass: "h-16 w-16 object-cover rounded-full",
-        attrs: {
-          src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-          alt: "Current profile photo",
-        },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

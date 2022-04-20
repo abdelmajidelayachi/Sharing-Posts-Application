@@ -10,6 +10,13 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ['userId', 'categoryId', 'description', 'upVotes', 'downVotes', 'image', 'video'];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

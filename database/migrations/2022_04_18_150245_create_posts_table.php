@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('userId');
+            $table->foreignId('userId')->references('id')->on('users');
             $table->integer('categoryId');
             $table->string('description')->nullable();
             $table->integer('upVotes');

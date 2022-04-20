@@ -23,9 +23,6 @@ class PostFactory extends Factory
             'upVotes' => $this->faker->numberBetween(1, 10),
             'downVotes' => $this->faker->numberBetween(1, 10),
             'image' => $this->faker->imageUrl(),
-            'video' => $this->faker->url(),
-                            
-            
         ];
     }
 }

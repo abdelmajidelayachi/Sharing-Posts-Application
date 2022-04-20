@@ -1,8 +1,7 @@
 <template lang="">
   <div>
     <div v-for="(post, index) in posts" :key="index">
-    
-      <Post :post='post'/>
+      <Post :post="post"/>
     </div>
     
     
@@ -21,7 +20,7 @@ export default {
   mounted(){
     axios.get('/api/posts').then(res => {
       console.log(res.data)
-      this.posts = res.data.data
+      this.posts = res.data
     })
   },
   methods: {

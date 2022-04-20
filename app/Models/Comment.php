@@ -10,4 +10,9 @@ class Comment extends Model
     use HasFactory;
     protected $fillable =['postId','userWhiterId','message'];
 
+    // public function post()
+    // {
+    //     return $this->belongsTo(Post::class);
+    // }
+
 }

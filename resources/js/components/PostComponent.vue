@@ -4,10 +4,10 @@
   <div class="bg-white">
     <form class="flex items-center space-x-6 pl-6 py-1 rounded-lg bg-white ">
       <div class="shrink-0">
-        <img class="h-16 w-16 object-cover rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="Current profile photo" />
+        <img class="h-16 w-16 object-cover rounded-full" :src="`${post.user.profile_image}`" alt="Current profile photo" />
       </div>
       <div class="flex flex-col">
-        <h1 class="title-font sm:text-base md:text-xl  lg:text-3xl mb-1 font-bold pt-3 text-gray-900">Sarah Smith </h1>
+        <h1 class="title-font sm:text-base md:text-xl  lg:text-3xl mb-1 font-bold pt-3 text-gray-900">{{post.user.name}} </h1>
         <p class="">{{getTimeOfThePost().value +' ' +getTimeOfThePost().name }}</p>
       
       </div>
@@ -61,7 +61,7 @@
           <div @click="showCommentHandler" class='text-gray-500 mt-1'>
             <i class="fa-message fa-2x" v-bind:class="[commentTap  ?' fas': ' fa-regular ' ]"></i>
           </div>
-          <span class="ml-3 text-lg text-gray-900">{{post.downVotes}}</span>
+          <span class="ml-3 text-lg text-gray-900">{{post.comments.length}}</span>
           <div class='text-gray-500'>
             <!-- <span class='mb-1'>comment</span> -->
           </div>
@@ -71,7 +71,7 @@
     </div>
   </div>
   <div v-if='commentTap'>
-    <Comments :commentsRef='post.id' />
+    <Comments :comments='post.comments' />
   </div>
 </section>
 </template>
@@ -88,6 +88,7 @@ export default {
       downVote: false,
       commentTap: false,
       posts: [],
+      numberComments: 0,
     }
   },
 
@@ -106,7 +107,10 @@ export default {
       this.upVote = false
     },
     
-    
+    countComment() {
+      this.numberComments = this.posts.comments.length;
+      // console.log(this.numberComments)
+    },
     getTimeOfThePost(){
       const today= new Date();
       const postDate = new Date(this.post.created_at);

@@ -7,7 +7,7 @@
 
     </div>
     
-    <Comment />
+    <Comment :comments='comments'/>
  
 
    
@@ -23,15 +23,10 @@ export default {
     };
   },
   methods: {
-    mounted(){
-      axios.get('/api/Comments/'+ this.commentsRef).then(res=>{
-        console.log(res.data);
-        this.comments=res.data.data;
-      })
-    }
+   
 
   },
-  props: ['commentsRef'],
+  props: ['comments'],
   
   components: {
     Comment,

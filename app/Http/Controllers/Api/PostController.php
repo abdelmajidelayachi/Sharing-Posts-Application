@@ -17,7 +17,12 @@ class PostController extends Controller
      */
     public function index()
     {
-       return PostResource::collection(post::all());
+        // $comments = Post::find(1)->comments;
+        // return PostResource::collection($comments);
+        // $posts = Post::with('comments')->where('userId', auth()->user()->id)->get();
+        $posts = Post::with('comments')->with('user')->get();
+        return $posts;
+    //    return PostResource::collection(Post::all());
     }
 
     /**
