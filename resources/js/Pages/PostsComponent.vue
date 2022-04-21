@@ -13,16 +13,16 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      posts: [],
-     
+    
     }
   },
-  mounted(){
-    axios.get('/api/posts').then(res => {
-      console.log(res.data)
-      this.posts = res.data
-    })
-  },
+props:['posts'],
+  // mounted(){
+  //   axios.get('/api/posts').then(res => {
+  //     console.log(res.data)
+  //     this.posts = res.data
+  //   })
+  // },
   methods: {
    
   },

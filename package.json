@@ -29,6 +29,9 @@
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
         "@fortawesome/free-regular-svg-icons": "^6.1.1",
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/inertia-vue": "^0.8.0",
+        "@inertiajs/progress": "^0.2.7",
         "vue-resource": "^1.5.3",
         "vue-router": "^3.5.3",
         "vue-virtual-scroller": "^1.0.10"

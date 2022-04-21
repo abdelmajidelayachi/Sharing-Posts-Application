@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
@@ -21,7 +22,7 @@ class PostController extends Controller
         // return PostResource::collection($comments);
         // $posts = Post::with('comments')->where('userId', auth()->user()->id)->get();
         $posts = Post::with('comments')->with('user')->get();
-        return $posts;
+        return inertia('Home',compact('posts'));
     //    return PostResource::collection(Post::all());
     }
 

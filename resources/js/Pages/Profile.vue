@@ -11,10 +11,10 @@
   </div>
 </template>
 <script>
-import NavBar from "../components/NavComponent.vue";
-import Account from "../components/AccountComponent.vue";
-import AddPostComponent from "../components/AddPostComponent.vue";
-import Posts from "../components/PostsComponent.vue";
+import NavBar from "./NavComponent.vue";
+import Account from "./AccountComponent.vue";
+import AddPostComponent from "./AddPostComponent.vue";
+import Posts from "./PostsComponent.vue";
 export default {
     data() {
         return {};
