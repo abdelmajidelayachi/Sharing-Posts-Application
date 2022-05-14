@@ -31,7 +31,7 @@
         class="flex items-start justify-center min-h-screen pt-24 text-center px-4 pb-10 sm:px-6 lg:px-8 "
       >
         <div
-          class="bg-white rounded-lg text-left overflow-hidden shadow-xl px-2 py-4 lg:w-1/2 md:w-2/3 sm:w-full animate-scale"
+          class="bg-white rounded-lg text-left overflow-hidden shadow-xl px-2 py-4 lg:w-1/2 md:w-2/3 sm:w-full w-full animate-scale"
           role="dialog"
           ref="modal"
           aria-modal="true"
@@ -51,8 +51,13 @@
             </button>
           </div>
        
-      <textarea id="message" rows="3" class=" resize-none block p-2.5 w-full md:text-lg text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-indigo-600 " placeholder="Write a comment..."></textarea>
-         
+      <textarea v-model="postText" id="message" rows="3" class=" resize-none block p-2.5 w-full md:text-lg text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-indigo-600 " placeholder="Write a comment..."></textarea>
+      <div class="flex  items-center bg-grey-lighter mt-4">
+      <label class=" flex flex-col items-center px-2 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue">
+        <i class="fas fa-image fa-2xl"></i>
+          <input type='file' class="hidden" />
+      </label>
+    </div>
            <div
         class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t mt-5 border-gray-200 rounded-b-md">
         <button type="button" @click="showModal = false"
@@ -60,7 +65,7 @@
           data-bs-dismiss="modal">
           Discard
         </button>
-        <button type="button"
+        <button type="button" @click="publicPost"
           class="inline-block px-6 py-3 bg-indigo-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out ml-2">
           Public
         </button>
@@ -81,34 +86,40 @@
 <script>
 import { ref } from "vue";
 import ModalAddPost from "./ModalAddPostComponent";
+import axios from 'axios';
 
 const components = {
-  ModalAddPost,
+    ModalAddPost,
 };
 export default {
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  methods: {},
-  name: "AddPostComponent",
-  components,
-  setup(props) {
-    const showModal = ref(true);
-
-    watch(
-      () => props.show,
-      (show) => {
-        showModal.value = show;
-        console.log(showModal.value);
+    data() {
+        return {
+            showModal: false,
+            postText : '',
+        };
+    },
+    methods: {
+      async publicPost(){
+        const response = await axios.post("/Api/post", this.postText);
+      console.log(response);
       }
-    );
-    return {
-      showModal,
-    };
-  },
+    },
+    name: "AddPostComponent",
+    components,
+    setup(props) {
+        const showModal = ref(true);
+
+        watch(
+            () => props.show,
+            (show) => {
+                showModal.value = show;
+                console.log(showModal.value);
+            }
+        );
+        return {
+            showModal,
+        };
+    },
 };
 </script>
-<style lang="en">
-</style>
+<style lang="en"></style>

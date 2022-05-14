@@ -40,3 +40,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 Route::get('/', [\App\Http\Controllers\Api\PostController::class, 'index']);
+
+// Route::get()

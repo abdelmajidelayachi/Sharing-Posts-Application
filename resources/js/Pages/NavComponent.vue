@@ -19,7 +19,7 @@
                     @click="menuDropper"
                     class="text-3xl absolute right-8 top-6 cursor-pointer md:hidden text-gray-500 hover:text-indigo-600"
                 >
-                    <i v-if="!dropMenu" class="fas fa-bars fa-lg"></i>
+                    <i v-if='!dropMenu' class="fas fa-bars fa-lg"></i>
                     <i v-else class="fas fa-xmark fa-lg"></i>
                 </div>
                 <ul
